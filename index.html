@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Johnson Website Solutions offers fast, affordable, and professional website design and hosting for small businesses and entrepreneurs in Lexington, KY.">
+    <title>Johnson Website Solutions - Professional Web Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; line-height: 1.7; }
+        .hero-section { 
+            background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: #0284c7; text-align: center; }
+        .section-subtitle { font-size: 1.25rem; color: #475569; text-align: center; max-width: 700px; margin: 0 auto 3rem auto; }
+        .card { background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.05); transition: all 0.3s ease-in-out; overflow: hidden; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.06); }
+        .btn { padding: 0.875rem 2rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.05em; }
+        .btn-primary { background-color: #0ea5e9; color: white; }
+        .btn-primary:hover { background-color: #0284c7; transform: scale(1.05); }
+        .btn-secondary { background-color: #f59e0b; color: white; }
+        .btn-secondary:hover { background-color: #d97706; transform: scale(1.05); }
+        .btn-accent { background-color: #7c3aed; color: white; }
+        .btn-accent:hover { background-color: #6d28d9; transform: scale(1.05); }
+        .nav-link { padding: 0.75rem 1rem; color: #334155; font-weight: 600; transition: color 0.3s ease, transform 0.2s ease; position: relative; }
+        .nav-link:hover { color: #0ea5e9; transform: translateY(-2px); }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 50%; background-color: #0ea5e9; transition: all 0.3s ease-out; transform: translateX(-50%); }
+        .nav-link:hover::after, .nav-link.active::after { width: 70%; }
+        .mobile-nav-link { display: block; padding: 1rem 1.5rem; color: #1e293b; font-weight: 600; transition: background-color 0.3s ease, color 0.3s ease; border-bottom: 1px solid #e2e8f0;}
+        .mobile-nav-link:hover { background-color: #e0f2fe; color: #0284c7; }
+        #mobileMenu { transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; }
+        .chart-container { position: relative; width: 100%; max-width: 380px; margin-left: auto; margin-right: auto; height: 320px; max-height: 380px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .deliverable-item { display: flex; align-items: flex-start; margin-bottom: 1rem; font-size: 1.1rem; }
+        .deliverable-icon { color: #10b981; margin-right: 1rem; font-size: 1.6rem; line-height: 1; margin-top: 0.125rem; }
+        input[type="text"], input[type="email"], textarea, select {
+            border: 2px solid #cbd5e1; padding: 0.875rem 1rem; border-radius: 0.5rem; width: 100%;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; font-size: 1rem;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+            border-color: #0ea5e9; box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2); outline: none;
+        }
+        .portfolio-card-image { height: 200px; background-size: cover; background-position: center; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; transition: transform 0.4s ease; }
+        .card:hover .portfolio-card-image { transform: scale(1.05); }
+        .pricing-card-popular { border: 3px solid #0ea5e9; transform: scale(1.05); }
+        
+        .animate-on-scroll { opacity: 0; transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in-down { transform: translateY(-30px); }
+        .fade-in-up { transform: translateY(30px); }
+        .fade-in-left { transform: translateX(-30px); }
+        .fade-in-right { transform: translateX(30px); }
+        .is-visible { opacity: 1; transform: translateY(0) translateX(0); }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; padding: 1rem; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background-color: #4a5568; border-radius: 0.75rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.06); width: 95%; max-width: 1100px; height: 90vh; max-height: 90vh; overflow: hidden; position: relative; transform: scale(0.95); transition: transform 0.3s ease; display: flex; flex-direction: column; }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; background-color: #2d3748; color: white; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; }
+        .modal-title { font-size: 1.1rem; font-weight: 600; }
+        .modal-close-btn { background: none; border: none; font-size: 1.8rem; color: white; cursor: pointer; padding: 0.25rem 0.5rem; line-height: 1; border-radius: 0.25rem; }
+        .modal-close-btn:hover { color: #e0e0e0; }
+        .modal-iframe-container { flex-grow: 1; overflow: hidden; background-color: white; border-bottom-left-radius: 0.75rem; border-bottom-right-radius: 0.75rem; }
+        .modal-iframe-container iframe { width: 100%; height: 100%; border: none; }
+        
+        .faq-item, .terms-item { background-color: #fff; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); }
+        .faq-question, .terms-item h3 { font-size: 1.25rem; font-weight: 600; color: #0284c7; margin-bottom: 0.75rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer, .terms-item p, .terms-item ul { color: #334155; font-size: 1rem; line-height: 1.7; }
+        .terms-item ul { list-style: disc; padding-left: 1.5rem; margin-top: 0.5rem; }
+        .faq-answer { padding-top: 0.5rem; border-top: 1px solid #e2e8f0; margin-top: 0.75rem; }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-question .toggle-icon { transition: transform 0.3s ease; }
+        .faq-item.active .faq-question .toggle-icon { transform: rotate(45deg); }
+        
+        .btn-showcase {
+            background-size: 200% auto;
+            background-image: linear-gradient(to right, #f59e0b 0%, #d97706 50%, #f59e0b 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem; font-weight: 700; font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 0.05em; box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+            animation: pulse-glow 2.5s infinite, gradient-shift 5s ease-in-out infinite;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-showcase:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
+            animation-play-state: paused;
+        }
+        
+        .card-pulse-accent { animation: pulse-accent-glow 3s infinite; }
+        .testimonial-slider {
+            position: relative; max-width: 800px; margin: auto; overflow: hidden; border-radius: 0.75rem;
+            background-color: white; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.05);
+            min-height: 320px; display: flex; align-items: center;
+        }
+        .testimonial-slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 2.5rem 3rem;
+            opacity: 0; transition: opacity 0.8s ease-in-out; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+        }
+        .testimonial-slide.active { opacity: 1; position: relative; }
+        .testimonial-quote {
+            font-size: 1.25rem; font-style: italic; color: #334155; line-height: 1.8; margin-bottom: 1.5rem;
+        }
+        .testimonial-quote::before {
+            content: '“'; font-size: 4rem; color: #0ea5e9; position: absolute;
+            top: 0.5rem; left: 1rem; opacity: 0.3;
+        }
+        .testimonial-author { font-weight: 700; font-size: 1.1rem; color: #0284c7; }
+        .testimonial-company { font-size: 0.9rem; color: #64748b; }
+        .testimonial-dots { text-align: center; margin-top: 1.5rem; }
+        .testimonial-dot {
+            cursor: pointer; height: 12px; width: 12px; margin: 0 5px; background-color: #cbd5e1;
+            border-radius: 50%; display: inline-block; transition: background-color 0.3s ease;
+        }
+        .testimonial-dot.active, .testimonial-dot:hover { background-color: #0ea5e9; }
+        
+        /* UPDATED: "Buy me a drink" Feature Styles */
+        .support-modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 10, 20, 0.9);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; padding: 1rem;
+        }
+        .support-modal-overlay.active { opacity: 1; visibility: visible; }
+        .support-modal-content {
+            position: relative;
+            padding: 2rem;
+            background: #1e293b;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 500px;
+            color: white;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9) translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .support-modal-overlay.active .support-modal-content {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .support-modal-close-btn {
+            position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255,255,255,0.1);
+            border: none; width: 32px; height: 32px; border-radius: 50%;
+            font-size: 1.5rem; color: white; cursor: pointer; line-height: 1;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .support-modal-close-btn:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
+        .support-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .qr-code-wrapper {
+            background: white; padding: 0.75rem; border-radius: 0.75rem;
+            display: inline-block;
+        }
+        .qr-code-wrapper img { display: block; }
+        .support-link {
+            color: #38bdf8;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .support-link:hover { text-decoration: underline; }
+        .scan-text { font-size: 0.8rem; color: #94a3b8; margin-top: 0.5rem;}
+        .disclaimer-text { font-size: 0.75rem; color: #94a3b8; max-width: 90%; margin: 2rem auto 0 auto;}
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.8); }
+        }
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        @keyframes pulse-accent-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(124, 58, 237, 0.3); border-color: #a78bfa; }
+            50% { box-shadow: 0 0 25px rgba(124, 58, 237, 0.6); border-color: #c4b5fd; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-3xl font-extrabold text-sky-600 tracking-tight flex-shrink-0">JWS<span class="text-amber-500">.</span></a>
+                    <a href="https://whiteenter316.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-showcase hidden md:flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 2a1 1 0 00-1 1v1h1a1 1 0 010 2H4v1a1 1 0 001 1h2a1 1 0 001-1V6h1a1 1 0 100-2h-1V3a1 1 0 00-1-1H5zM3 14a1 1 0 001-1v-1h1a1 1 0 100-2H4v-1a1 1 0 00-1-1H1a1 1 0 00-1 1v2a1 1 0 001 1h2zm13-1a1 1 0 01-1 1h-1a1 1 0 100 2h1a1 1 0 001-1v-1a1 1 0 10-2 0v1a3 3 0 106 0v-1a1 1 0 10-2 0v1zM11 2a1 1 0 00-1 1v2a1 1 0 102 0V3a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                        Featured Project
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-1 items-center">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                    <a href="#testimonials" class="nav-link">Testimonials</a>
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    <a href="#terms" class="nav-link">Service Terms</a>
+                    <a href="#contact" class="nav-link btn btn-primary !text-white !px-6 !py-2.5">Contact</a>
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobileMenuButton" class="text-slate-700 hover:text-sky-600 focus:outline-none p-2 rounded-md">
+                        <svg id="menuIconOpen" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                        <svg id="menuIconClose" class="h-7 w-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden absolute top-full left-0 right-0 bg-white shadow-xl py-2 transform opacity-0 -translate-y-2">
+            <a href="https://whiteenter316.netlify.app/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link text-amber-600 font-bold">⭐ Featured Project</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#services" class="mobile-nav-link">Services</a>
+            <a href="#portfolio" class="mobile-nav-link">Portfolio</a>
+            <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
+            <a href="#pricing" class="mobile-nav-link">Pricing</a>
+            <a href="#faq" class="mobile-nav-link">FAQ</a>
+            <a href="#terms" class="mobile-nav-link">Service Terms</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section text-white relative">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col items-center justify-center min-h-[80vh] md:min-h-[calc(100vh-5rem)] py-20">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight animate-on-scroll fade-in-down" data-delay="100">Johnson Website Solutions</h1>
+                <p class="text-xl sm:text-2xl md:text-3xl mb-10 max-w-3xl animate-on-scroll fade-in-up" data-delay="300">“Let me take care of your website while you focus on running your business.”</p>
+                <a href="#contact" class="btn btn-secondary text-lg animate-on-scroll fade-in-up" data-delay="500">Launch Your Vision</a>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 md:py-28 bg-slate-100">
+             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sky-600 font-semibold tracking-wider uppercase mb-2 animate-on-scroll fade-in-down">Meet the Maker</p>
+                <h2 class="section-title animate-on-scroll fade-in-down" data-delay="100">About Me & My Mission</h2>
+                <div class="md:grid md:grid-cols-5 md:gap-12 items-center">
+                    <div class="md:col-span-2 flex justify-center md:justify-start mb-10 md:mb-0 animate-on-scroll fade-in-left" data-delay="300">
+                        <img src="profilepic.jpg" alt="Randy Johnson - Owner & Lead Developer" class="w-44 h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 object-cover rounded-full shadow-xl border-4 border-white" onerror="this.onerror=null;this.src='https://placehold.co/224x224/e2e8f0/334155?text=R.J.';">
+                    </div>
+                    <div class="md:col-span-3 animate-on-scroll fade-in-right" data-delay="400">
+                        <h3 class="text-3xl font-bold text-slate-800 mb-4">Randy Johnson, BBA</h3>
+                        <p class="text-amber-600 font-semibold text-lg mb-6">Owner & Lead Developer, Johnson Website Solutions</p>
+                        <div class="space-y-4 text-slate-700">
+                            <p>Hello! I'm Randy Johnson, the founder and sole developer at Johnson Website Solutions, based right here in Lexington, KY. After earning my Bachelor of Business Administration from Eastern Kentucky University, I saw a real need among local entrepreneurs and small businesses for straightforward, effective, and affordable web solutions. That's why I started JWS – to cut through the complexity and deliver websites that truly work for you.</p>
+                            <p><strong class="font-semibold text-slate-800">My Commitment to You:</strong> All work is done by me personally. This means no outsourcing, no confusing jargon, and no gimmicks. I leverage cutting-edge AI tools to streamline the design and development process, which allows me to build high-quality, custom websites faster and more affordably than traditional agencies. You get a direct line of communication and a partner who understands that your website is a vital tool for your business success.</p>
+                            <p><strong class="font-semibold text-slate-800">Our Mission:</strong> To code fast, reliable websites and provide seamless, fully-managed hosting for solo entrepreneurs, small businesses, and side hustlers in Lexington and beyond. We aim to provide a quick, dependable, and professional online presence so you can focus on what you do best – running your business.</p>
+                            <p>I believe in a collaborative process, working closely with you to understand your vision and bring it to life. If you're looking for a dedicated, local partner to build or enhance your web presence, I'd be delighted to discuss your project. <a href="#contact" class="text-sky-600 hover:text-sky-700 font-semibold">Let's connect!</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 md:py-28">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sky-600 font-semibold tracking-wider uppercase mb-2 animate-on-scroll fade-in-down">Our Offerings</p>
+                <h2 class="section-title animate-on-scroll fade-in-down" data-delay="100">What You Get: A Unified Solution</h2>
+                <p class="section-subtitle animate-on-scroll fade-in-down" data-delay="200">Our all-inclusive plan covers custom design, your first year's domain, and fully managed hosting. We handle the technical complexities so you can focus on your passion.</p>
+                <div class="grid lg:grid-cols-5 gap-10 items-center">
+                    <div class="lg:col-span-3 animate-on-scroll fade-in-left" data-delay="300">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-8">Core Deliverables Included:</h3>
+                        <ul id="deliverablesList" class="space-y-3">
+                            <li class="deliverable-item"><span class="deliverable-icon">✓</span>Custom 1-page or 3-page website tailored to your brand.</li>
+                            <li class="deliverable-item"><span class="deliverable-icon">✓</span>Custom Resume Website (perfect for professionals).</li>
+                            <li class="deliverable-item"><span class="deliverable-icon">✓</span>Optimized for speed & fully mobile-friendly design.</li>
+                            <li class="deliverable-item"><span class="deliverable-icon">✓</span>Your own .com domain name (first year included).</li>
+                            <li class="deliverable-item"><span class="deliverable-icon">✓</span>Secure, high-performance hosting by JWS. We leverage modern platforms like Netlify to get your site deployed quickly on a global network, ensuring optimal uptime and speed. Fully managed, so you can go live fast without touching the technical details.</li>
+                            <li class="deliverable-item"><span class="deliverable-icon">✓</span>Integrated contact form (leads emailed directly to you).</li>
+                            <li class="deliverable-item"><span class="deliverable-icon">✓</span>Rapid turnaround: Go live in days, not weeks.</li>
+                            <li class="deliverable-item"><span class="deliverable-icon">✓</span>Optional ongoing support & website updates (see our <a href="#terms" class="text-sky-600 hover:underline">Service Terms</a> for details).</li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-2 card p-6 md:p-8 text-center animate-on-scroll fade-in-right" data-delay="400">
+                        <h4 class="text-xl font-semibold text-sky-700 mb-2">Value Breakdown: $199 Setup</h4>
+                        <p class="text-slate-600 mb-5 text-sm">The initial setup fee is packed with essential value to launch your online presence effectively.</p>
+                        <div class="chart-container">
+                            <canvas id="setupValueChart"></canvas>
+                        </div>
+                        <p id="chartHoverDetail" class="mt-5 text-slate-500 h-6 text-sm">&nbsp;</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="portfolio" class="py-20 md:py-28 bg-slate-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sky-600 font-semibold tracking-wider uppercase mb-2 animate-on-scroll fade-in-down">My Work</p>
+                <h2 class="section-title animate-on-scroll fade-in-down" data-delay="100">Portfolio Showcase</h2>
+                <p class="section-subtitle animate-on-scroll fade-in-down" data-delay="200">A glimpse into the quality and style I bring to every project. (Demo examples)</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-2">
+                    <a href="https://whiteenter316.netlify.app/" target="_blank" rel="noopener noreferrer" class="card block animate-on-scroll fade-in-up" data-delay="300">
+                        <div class="portfolio-card-image" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=70');" onerror="this.style.backgroundImage='url(https://placehold.co/800x200/fbbf24/ffffff?text=Construction+Site)'"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Construction Company Site</h3>
+                            <p class="text-slate-600 text-sm mb-4">A professional and robust website designed for a local construction company, showcasing their projects and services.</p>
+                            <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-full">Live Website</span>
+                        </div>
+                    </a>
+                    <div id="bistroCard" class="card animate-on-scroll fade-in-up cursor-pointer" data-delay="400">
+                        <div class="portfolio-card-image" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=70');" onerror="this.style.backgroundImage='url(https://placehold.co/800x200/c09a69/ffffff?text=Bistro+Demo)'"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">The Bluegrass Bistro</h3>
+                            <p class="text-slate-600 text-sm mb-4">A sophisticated demo for a restaurant, featuring an interactive menu and an online ordering system.</p>
+                            <span class="text-xs font-semibold bg-amber-100 text-amber-700 px-2 py-1 rounded-full">Restaurant Demo</span>
+                        </div>
+                    </div>
+                    <div id="resumePortfolioCard" class="card animate-on-scroll fade-in-up cursor-pointer" data-delay="500">
+                        <div class="portfolio-card-image" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=70');" onerror="this.style.backgroundImage='url(https://placehold.co/800x200/e0e0e0/757575?text=Portfolio)'"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Professional Portfolio</h3>
+                            <p class="text-slate-600 text-sm mb-4">Sleek online resume and project showcase for a creative professional.</p>
+                            <span class="text-xs font-semibold bg-violet-100 text-violet-700 px-2 py-1 rounded-full">Personal Branding</span>
+                        </div>
+                    </div>
+                </div>
+                 <p class="text-center text-md text-slate-500 mt-12 animate-on-scroll fade-in-up" data-delay="600">Your amazing project could be the next one featured!</p>
+            </div>
+        </section>
+
+        <!-- TESTIMONIAL SECTION -->
+        <section id="testimonials" class="py-20 md:py-28">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sky-600 font-semibold tracking-wider uppercase mb-2 animate-on-scroll fade-in-down">Social Proof</p>
+                <h2 class="section-title animate-on-scroll fade-in-down" data-delay="100">What My Clients Say</h2>
+                <div class="animate-on-scroll fade-in-up" data-delay="300">
+                    <div id="testimonial-slider" class="testimonial-slider">
+                        <!-- Slide 1 -->
+                        <div class="testimonial-slide active">
+                            <p class="testimonial-quote">JWS Johnson Website Solutions does great work—everything from company logos to full websites and everything in between! Thank you!</p>
+                            <div>
+                                <p class="testimonial-author">— Lucy White</p>
+                                <p class="testimonial-company">White Enterprises LLC</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="testimonial-slide">
+                            <p class="testimonial-quote">White Enterprises LLC have hired Johnson Website Solutions to do several jobs. Everything from commercial photos, to fb shorts advertising and even Website pages. They all came out spectacular. Thank you so much Johnson Website Solutions!</p>
+                            <div>
+                                <p class="testimonial-author">— White Enterprises LLC</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="testimonial-dots" class="testimonial-dots">
+                        <span class="testimonial-dot active" data-slide="0"></span>
+                        <span class="testimonial-dot" data-slide="1"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END TESTIMONIAL SECTION -->
+
+        <section id="pricing" class="py-20 md:py-28 bg-slate-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sky-600 font-semibold tracking-wider uppercase mb-2 animate-on-scroll fade-in-down">Investment</p>
+                <h2 class="section-title animate-on-scroll fade-in-down" data-delay="100">Simple, Transparent Pricing</h2>
+                <p class="section-subtitle animate-on-scroll fade-in-down" data-delay="200">No hidden fees. Clear, upfront costs for getting your business online professionally.</p>
+                <div class="grid md:grid-cols-3 gap-8 text-center mt-2">
+                    <div class="card p-8 animate-on-scroll fade-in-up" data-delay="300">
+                        <div class="mb-4"><span class="text-5xl text-sky-500">🚀</span></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3">One-Time Setup</h3>
+                        <p class="text-5xl font-extrabold text-sky-600 mb-4">$199</p>
+                        <ul class="text-slate-600 space-y-2 text-sm">
+                            <li>✓ Custom Website Design</li>
+                            <li>✓ Domain Registration (1st Year)</li>
+                            <li>✓ Full Site Launch & Setup</li>
+                            <li>✓ Mobile Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="card p-8 pricing-card-popular animate-on-scroll fade-in-up" data-delay="400">
+                         <span class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4 bg-amber-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">BEST VALUE</span>
+                        <div class="mb-4"><span class="text-5xl text-amber-500">☁️</span></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3">Monthly Hosting</h3>
+                        <p class="text-5xl font-extrabold text-sky-600 mb-1">$10<span class="text-xl font-semibold">/mo</span></p>
+                        <p class="text-xs text-slate-500 mb-4">(Billed Annually)</p>
+                        <ul class="text-slate-600 space-y-2 text-sm">
+                            <li>✓ Secure & Reliable Hosting</li>
+                            <li>✓ SSL Certificate Included</li>
+                            <li>✓ Performance Monitoring</li>
+                            <li>✓ Peace of Mind</li>
+                        </ul>
+                    </div>
+                    <div class="card p-8 animate-on-scroll fade-in-up" data-delay="500">
+                        <div class="mb-4"><span class="text-5xl text-sky-500">🏷️</span></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3">Domain Renewal</h3>
+                        <p class="text-5xl font-extrabold text-sky-600 mb-4">$25<span class="text-xl font-semibold">/yr</span></p>
+                        <ul class="text-slate-600 space-y-2 text-sm">
+                            <li>✓ After Initial Included Year</li>
+                            <li>✓ Hassle-Free Auto-Renewal Option</li>
+                            <li>✓ Keep Your Online Identity</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="add-ons" class="mt-20 md:mt-24 animate-on-scroll fade-in-up" data-delay="600">
+                    <h3 class="text-3xl font-bold text-center text-slate-800 mb-12">Optional Add-Ons & Enhancements</h3>
+                    <div class="max-w-xl mx-auto grid sm:grid-cols-2 gap-8">
+                        <div class="card p-6 flex flex-col items-center text-center hover:!shadow-sky-200/50">
+                            <span class="text-4xl text-sky-500 mb-3">📄</span>
+                            <h4 class="text-lg font-semibold text-slate-700">Additional Page(s)</h4>
+                            <p class="text-slate-600 text-2xl font-bold mt-1">$50 <span class="text-sm font-normal">each</span></p>
+                        </div>
+                        <a href="https://mindeazr.github.io/unofficalwebsite/" target="_blank" rel="noopener noreferrer" class="block">
+                            <div class="card p-6 flex flex-col items-center text-center h-full border-2 border-violet-300 card-pulse-accent">
+                                <span class="text-4xl text-violet-500 mb-3">✨</span>
+                                <h4 class="text-lg font-semibold text-slate-700">Animated Logo/Intro</h4>
+                                <p class="text-slate-600 text-2xl font-bold mt-1 text-violet-600">See Demo</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-20 md:py-28 bg-slate-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sky-600 font-semibold tracking-wider uppercase mb-2 animate-on-scroll fade-in-down">Common Questions</p>
+                <h2 class="section-title animate-on-scroll fade-in-down" data-delay="100">Frequently Asked Questions</h2>
+                <p class="section-subtitle animate-on-scroll fade-in-down" data-delay="200">Answers to common questions about our services and process.</p>
+                <div class="max-w-3xl mx-auto space-y-4 animate-on-scroll fade-in-up" data-delay="300">
+                    <div class="faq-item">
+                        <h3 class="faq-question">What platform do you use for hosting my website? <span class="toggle-icon text-sky-500 text-2xl">+</span></h3>
+                        <div class="faq-answer">
+                            <p>To get your site online as quickly and reliably as possible, we primarily use modern deployment platforms like Netlify. This allows us to leverage a high-speed global network for excellent performance and security. All hosting is fully managed by JWS, so you get the benefit of top-tier infrastructure without any of the complexity.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">Who owns my website and hosting account? <span class="toggle-icon text-sky-500 text-2xl">+</span></h3>
+                        <div class="faq-answer">
+                            <p>You, the client, are the owner of your website content and domain name. For hosting, we set up and manage the deployment on platforms like Netlify to provide you with a seamless, stress-free experience. Our goal is transparency and your complete control over your assets. Should you ever choose to move your site, we facilitate a smooth handover of all your website files. Please see our <a href="#terms" class="text-sky-600 hover:underline">Service Terms</a> for more details.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <h3 class="faq-question">What if my website needs more resources than the standard hosting plan offers? <span class="toggle-icon text-sky-500 text-2xl">+</span></h3>
+                        <div class="faq-answer">
+                            <p>Our standard $10/month hosting plan is designed to generously accommodate the needs of most small business websites. If your website's traffic or resource requirements grow to a point where they incur additional costs from the underlying platform (like Netlify's pro tiers), we will discuss this with you transparently. Any such additional costs would be passed on to you, but only after prior notification and agreement. Our aim is to keep your hosting affordable and predictable.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">What does "all work done by me personally" mean for my project? <span class="toggle-icon text-sky-500 text-2xl">+</span></h3>
+                        <div class="faq-answer">
+                            <p>It means that I, Randy Johnson, will be your direct point of contact and the primary developer working on your website. This ensures consistency, direct accountability, and a deep understanding of your project from start to finish. It allows me to combine my technical skills with my business background (BBA) to deliver a site that truly aligns with your goals. No outsourcing means you get a dedicated, personal service.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="terms" class="py-20 md:py-28">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sky-600 font-semibold tracking-wider uppercase mb-2 animate-on-scroll fade-in-down">Our Commitment</p>
+                <h2 class="section-title animate-on-scroll fade-in-down" data-delay="100">Hosting Policy & Service Terms Summary</h2>
+                <p class="section-subtitle animate-on-scroll fade-in-down" data-delay="200">Key information about our website development and hosting services. For full details, please refer to your individual service agreement.</p>
+                <div class="max-w-3xl mx-auto space-y-6 animate-on-scroll fade-in-up" data-delay="300">
+                    <div class="terms-item">
+                        <h3><i class="fas fa-server mr-2 text-sky-500"></i>Website Hosting</h3>
+                        <p>Johnson Website Solutions (JWS) provides fully managed web hosting. We use modern deployment platforms like Netlify to launch your site quickly with high performance, security (including SSL certificates), and reliability. This approach allows for rapid deployment, which is how we get you online fast. We may also use foundational cloud services like AWS for backend needs where appropriate.</p>
+                    </div>
+                    <div class="terms-item">
+                        <h3><i class="fas fa-user-shield mr-2 text-sky-500"></i>Account Ownership & Access</h3>
+                        <p>While JWS manages the website deployment on platforms like Netlify for client convenience, you (the client) retain full ownership of your website content and domain name. We are committed to transparency. Should you decide to terminate our hosting services, we will provide a complete package of your website's files and database, facilitating a smooth handover for migration to another provider.</p>
+                    </div>
+                    <div class="terms-item">
+                        <h3><i class="fas fa-dollar-sign mr-2 text-sky-500"></i>Billing for Hosting & Platform Costs</h3>
+                        <p>Our standard monthly hosting fee is designed to cover typical resource usage. If your website's traffic or use of advanced features consistently exceeds these allowances and incurs additional costs from the third-party platform (e.g., upgrading to a paid tier on Netlify), JWS will:
+                             <ul>
+                                 <li>Notify you in advance of any potential overages or required service upgrades.</li>
+                                 <li>Discuss options and seek your approval before any additional charges are incurred.</li>
+                                 <li>Pass through these direct platform costs to you, in addition to your standard JWS hosting management fee.</li>
+                             </ul>
+                        Our goal is to provide predictable and affordable hosting, with clear communication regarding any necessary adjustments due to your site's growth.
+                        </p>
+                    </div>
+                     <div class="terms-item">
+                        <h3><i class="fas fa-file-signature mr-2 text-sky-500"></i>Service Agreement</h3>
+                        <p>Upon engagement, you will receive a detailed service agreement outlining the full scope of work, deliverables, payment terms, timelines, policies regarding revisions and ongoing support, and specific terms related to hosting and third-party services. We encourage you to review this agreement carefully. This summary provides an overview, but the formal service agreement will govern our engagement.</p>
+                    </div>
+                    <div class="terms-item">
+                        <h3><i class="fas fa-shield-alt mr-2 text-sky-500"></i>Security & Maintenance</h3>
+                        <p>We take security seriously. Our hosting management includes implementing SSL certificates, security best practices, and monitoring performance. While we strive to maintain a secure environment using reputable platforms, clients are responsible for the security of their own content and any credentials provided to them for content management. JWS is not liable for security breaches resulting from compromised client credentials or vulnerabilities within client-provided content.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 md:py-28 bg-gradient-to-r from-sky-600 to-sky-700 text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-amber-400 font-semibold tracking-wider uppercase mb-2 animate-on-scroll fade-in-down">Let's Connect</p>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-4 animate-on-scroll fade-in-down" data-delay="100">Ready to Start Your Project?</h2>
+                <p class="text-center text-lg sm:text-xl text-sky-100 mb-12 max-w-2xl mx-auto animate-on-scroll fade-in-down" data-delay="200">Reach out today for a no-obligation consultation. Let's discuss your vision and how I can help bring it to life online!</p>
+                <div class="max-w-xl mx-auto bg-white p-2 sm:p-4 rounded-xl shadow-2xl text-slate-800 animate-on-scroll fade-in-up" data-delay="300">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfcfGg08xm7zYr8dGGAa9YrSiuyGbhr-4CYv0E9qxgl5wnQ0w/viewform?embedded=true" width="100%" height="959" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-400 pt-16 pb-12 text-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h3 class="text-xl font-bold text-white mb-2">Support My Work</h3>
+                <p class="text-slate-400 mb-4">Like what you see? Late nights are fueled by caffeine!</p>
+                <button id="support-button" class="bg-sky-500 hover:bg-sky-400 text-white font-bold py-2 px-5 rounded-full transition-colors duration-300 inline-flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg>
+                    Buy me an energy drink
+                </button>
+            </div>
+
+            <a href="#" class="text-3xl font-extrabold text-white tracking-tight mb-4 inline-block">JWS<span class="text-amber-500">.</span></a>
+            <div class="space-x-4 mb-4">
+                <a href="#faq" class="text-slate-300 hover:text-sky-400 text-sm">FAQ</a>
+                <a href="#terms" class="text-slate-300 hover:text-sky-400 text-sm">Service Terms</a>
+            </div>
+            <p class="mb-2">&copy; <span id="currentYear"></span> Johnson Website Solutions LLC. All rights reserved.</p>
+            <p class="text-sm">Crafting Digital Experiences in Lexington, KY & Beyond.</p>
+            <p class="text-xs mt-4">Designed & Hosted with ❤️ by Randy Johnson.</p>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <div id="resumeModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Randy Johnson - Professional Portfolio</span>
+                <button class="modal-close-btn" aria-label="Close resume modal">&times;</button>
+            </div>
+            <div class="modal-iframe-container"><iframe id="resumeIframe" title="Randy Johnson's Resume"></iframe></div>
+        </div>
+    </div>
+
+    <div id="bistroModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Demo: The Bluegrass Bistro</span>
+                <button class="modal-close-btn" aria-label="Close bistro site modal">&times;</button>
+            </div>
+            <div class="modal-iframe-container"><iframe id="bistroIframe" title="The Bluegrass Bistro Demo"></iframe></div>
+        </div>
+    </div>
+    
+    <div id="support-modal" class="support-modal-overlay">
+      <div class="support-modal-content">
+        <button id="close-support-modal" class="support-modal-close-btn">&times;</button>
+        <h2 class="text-2xl font-bold mb-2">Thanks for your support!</h2>
+        <div class="support-options-grid">
+            <div>
+                <h3 class="text-lg font-semibold text-sky-300 mb-2">Cash App</h3>
+                <a href="https://cash.app/$futurists1" target="_blank" rel="noopener noreferrer">
+                    <div class="qr-code-wrapper">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://cash.app/$futurists1&bgcolor=ffffff&color=000000&qzone=1" alt="Cash App QR Code for futurists1" width="150" height="150">
+                    </div>
+                </a>
+                <p class="mt-2"><a href="https://cash.app/$futurists1" target="_blank" rel="noopener noreferrer" class="support-link">$futurists1</a></p>
+                <p class="scan-text">(Tap or scan)</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-sky-300 mb-2">PayPal</h3>
+                 <a href="https://paypal.me/randyjohnson9515" target="_blank" rel="noopener noreferrer">
+                    <div class="qr-code-wrapper">
+                        <!-- UPDATED PAYPAL QR CODE IMAGE -->
+                        <img src="qrcodepaypal.png" alt="Official PayPal QR Code for randyjohnson9515" width="150" height="150">
+                    </div>
+                </a>
+                <p class="mt-2"><a href="https://paypal.me/randyjohnson9515" target="_blank" rel="noopener noreferrer" class="support-link">@randyjohnson9515</a></p>
+                <p class="scan-text">(Tap or scan)</p>
+            </div>
+        </div>
+        <p class="disclaimer-text">
+            Johnson Website Solutions is a for-profit business. Any contributions are considered gifts to support our mission of helping small businesses and are not tax-deductible.
+        </p>
+      </div>
+    </div>
+
+
+    <script>
+        // --- Content for Resume Modal ---
+        const resumeHtmlContent = `
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0K4WCVW262"><\/script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0K4WCVW262');
+  <\/script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Randy Johnson – Business Professional</title>
+  <link rel="icon" href="profilepic.jpg" type="image/jpeg">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0066cc; /* Main blue */
+      --secondary: #2d3748; /* Dark gray for text */
+      --accent: #4299e1; /* Lighter blue for links */
+      --light: #f7fafc; /* Light gray for backgrounds */
+      --dark: #1a202c; /* Very dark gray for footer */
+      --gray: #718096; /* Medium gray for subtle text */
+      --success: #38a169; /* Green for checkmarks */
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      line-height:1.7; color:var(--secondary);
+      background:#f8f9fa; scroll-behavior:smooth;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex-grow: 1; 
+    }
+    a { color:var(--accent); text-decoration:none; transition:.3s; }
+    a:hover { color:var(--primary); }
+    .container { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
+
+    .header {
+      background:linear-gradient(135deg, var(--primary) 0%, #003366 100%);
+      color:white; padding:3rem 0 2rem; 
+      text-align:center; position:relative; overflow:hidden;
+    }
+    .header::after {
+      content:''; position:absolute; bottom:-5px; left:0;
+      width:100%; height:10px;
+      background:linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    }
+    .profile-pic {
+      width:120px; height:120px; 
+      border-radius:50%;
+      object-fit:cover; border:4px solid rgba(255,255,255,0.3);
+      box-shadow:0 10px 25px rgba(0,0,0,0.1);
+      margin:0 auto 1rem; display:block;
+    }
+    .header h1 {
+      font-size:2.5rem; 
+      margin-bottom:.5rem; font-weight:700;
+      letter-spacing:.5px; animation:fadeInUp .5s ease-out forwards;
+    }
+    .header p {
+      font-size:1rem; 
+      font-weight:300; max-width:600px;
+      margin:0.5rem auto 1.5rem; animation:fadeInUp .5s ease-out .2s forwards;
+    }
+    .social-links {
+      display:flex; justify-content:center; gap:1rem;
+      opacity:0; animation:fadeInUp .5s ease-out .4s forwards;
+    }
+    .social-link {
+      width:36px; height:36px; 
+      border-radius:50%;
+      background:rgba(255,255,255,0.1); color:white;
+      display:flex; align-items:center; justify-content:center;
+      transition:.3s; font-size: 0.9rem; 
+    }
+    .social-link:hover { background:rgba(255,255,255,0.2); transform:translateY(-3px); }
+
+    .navbar {
+      background:#fff; box-shadow:0 2px 15px rgba(0,0,0,0.1);
+      position:sticky; top:0; z-index:1000; width:100%; 
+    }
+    .nav-links { display:flex; justify-content:center; list-style:none; flex-wrap: wrap; }
+    .nav-link {
+      padding:0.8rem 1rem; 
+      color:var(--secondary); text-transform:uppercase;
+      font-weight:500; font-size:.8rem; 
+      position:relative;
+    }
+    .nav-link::after {
+      content:''; position:absolute; bottom:0; left:50%; width:0;
+      height:3px; background:var(--primary); transition:.3s;
+      transform:translateX(-50%);
+    }
+    .nav-link:hover::after, .nav-link.active::after { width:100%; }
+    .nav-link:hover, .nav-link.active { color:var(--primary); }
+
+    .main-content { padding:2rem 0; } 
+    .section {
+      background:#fff; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05);
+      padding:1.5rem; 
+      margin-bottom:2rem; 
+      opacity:0; transform:translateY(20px);
+      animation:fadeInUp .5s ease-out forwards;
+    }
+    .section:nth-of-type(2) { animation-delay:.1s; }
+    .section:nth-of-type(3) { animation-delay:.2s; }
+    .section:nth-of-type(4) { animation-delay:.3s; }
+    .section:nth-of-type(5) { animation-delay:.4s; }
+    .section-header { margin-bottom:1.5rem; position:relative; padding-bottom:.5rem; }
+    .section-header h2 {
+      font-size:1.6rem; 
+      color:var(--primary); font-weight:600;
+    }
+    .section-header::after {
+      content:''; position:absolute; bottom:0; left:0;
+      width:50px; height:3px; background:var(--primary);
+    }
+    .about-content p { margin-bottom:1rem; font-size: 0.95rem; } 
+
+    .timeline { position:relative; padding-left:15px; }
+    .timeline::before {
+      content:''; position:absolute; top:0; left:15px; 
+      width:2px; height:100%;
+      background:#e2e8f0;
+    }
+    .timeline-item { position:relative; margin-bottom:1.5rem; padding-left:30px; }
+    .timeline-marker {
+      position:absolute; top:0; left:5px; 
+      width:20px; height:20px;
+      border-radius:50%; background:var(--primary); border:3px solid #fff;
+    }
+    .timeline-content {
+      background:#f8f9fa; padding:1rem; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.05);
+      font-size: 0.9rem; 
+    }
+    .timeline-content h3 { font-size: 1.1rem; margin-bottom: 0.25rem;}
+    .timeline-content ul { padding-left: 1rem; margin-top: 0.5rem;}
+    .timeline-date {
+      display:inline-block; padding:.25rem .75rem; background:var(--primary);
+      color:#fff; border-radius:20px; font-size:.75rem; margin-bottom:.5rem; 
+    }
+    .education-item h3 { font-size: 1.1rem; margin-bottom: 0.25rem;}
+    .education-item p { font-size: 0.95rem; margin-bottom: 0.25rem;}
+    .education-item ul { list-style: disc; padding-left: 1.2rem; font-size: 0.9rem;}
+
+
+    .skills-container, .portfolio-grid, .contact-grid {
+      display:grid; gap:1.5rem; 
+    }
+    .skills-container { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); } 
+    .portfolio-grid { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); } 
+    .contact-grid { grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); } 
+    
+    .skill-category, .portfolio-item {
+        background-color: #f8f9fa;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .skill-category h3, .portfolio-item h3 { font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--primary); }
+    .skill-category:hover, .portfolio-item:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.1); }
+    .skill-list, .portfolio-desc ul { list-style:none; margin-top:.5rem; padding-left: 0; }
+    .skill-item { font-size: 0.9rem; margin-bottom: 0.25rem; } 
+    .skill-item::before {
+      content:"\\f00c"; font-family:"Font Awesome 6 Free"; font-weight:900;
+      margin-right:.5rem; color:var(--success);
+    }
+    .portfolio-item p { font-size: 0.9rem; }
+    .portfolio-link i { margin-left:.25rem; transition:.3s; }
+    .portfolio-link:hover i { transform:translateX(3px); }
+
+    .contact-item { text-align:center; font-size: 0.9rem; } 
+    .contact-icon {
+      width:50px; height:50px; 
+      margin:0 auto .5rem;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:50%; background:var(--primary); color:#fff; font-size:1.3rem; 
+    }
+
+    .footer { background:var(--dark); color:#fff; padding:1.5rem 0; text-align:center; font-size:0.9rem; } 
+    .footer-link { color:#a0aec0; margin:0 .5rem; transition:.3s; }
+    .footer-link:hover { color:#fff; }
+    .copyright { font-size:.75rem; color:var(--gray); margin-top:1rem; } 
+
+    @keyframes fadeInUp {
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .header { padding: 2rem 0 1.5rem; }
+        .profile-pic { width: 100px; height: 100px; }
+        .header h1 { font-size: 2rem; }
+        .header p { font-size: 0.9rem; }
+        .nav-links { justify-content: space-around; } 
+        .nav-link { padding: 0.7rem 0.5rem; font-size: 0.75rem; }
+        .main-content { padding: 1.5rem 0; }
+        .section { padding: 1rem; margin-bottom: 1.5rem; }
+        .section-header h2 { font-size: 1.4rem; }
+        .skills-container, .portfolio-grid, .contact-grid { grid-template-columns: 1fr; } 
+    }
+     @media (max-width: 480px) {
+        .header { padding: 1.5rem 0 1rem; }
+        .profile-pic { width: 80px; height: 80px; }
+        .header h1 { font-size: 1.8rem; }
+        .header p { font-size: 0.85rem; }
+        .nav-link { padding: 0.6rem 0.4rem; font-size: 0.7rem; }
+     }
+
+  </style>
+</head>
+<body>
+  <header class="header" id="home">
+    <img src="profilepic.jpg" alt="Randy Johnson" class="profile-pic" onerror="this.onerror=null;this.src='https://placehold.co/120x120/e2e8f0/334155?text=R.J.';">
+    <h1>Randy Johnson</h1>
+    <p>Business Professional with expertise in marketing, technology, and customer service</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/randy-johnson-1725a869" target="_blank" class="social-link" aria-label="LinkedIn Profile">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="mailto:randy_johnson138@mymail.eku.edu" class="social-link" aria-label="Email Randy Johnson">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </header>
+
+  <nav class="navbar">
+    <ul class="nav-links container">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content container">
+    <section id="about" class="section">
+      <div class="section-header"><h2>About Me</h2></div>
+      <div class="about-content">
+        <p>I'm Randy Johnson, holding a Bachelor's degree in Business Administration from Eastern Kentucky University. With years of experience, a sharp eye for detail, and a knack for problem-solving, I craft solutions tailored to your business. Let me turn your vision into reality!</p>
+        <p>I aim to establish a career as a dedicated and effective business professional.</p>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="section-header"><h2>Work Experience</h2></div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2024</span>
+            <h3>Construction Worker – White Enterprises 316, LLC</h3>
+            <ul>
+              <li>Customer service</li>
+              <li>Installing floors</li>
+              <li>Painting interiors</li>
+              <li>Pressure washing homes</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2024</span>
+            <h3>Customer Service Rep – Family Dollar</h3>
+            <ul>
+              <li>Assisting customers</li>
+              <li>Cash register transactions</li>
+              <li>Greeting customers</li>
+              <li>Stocking merchandise</li>
+            </ul>
+          </div>
+        </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="section-header"><h2>Education</h2></div>
+      <div class="education-item">
+        <h3>Bachelor of Business Administration</h3>
+        <span class="timeline-date">May 2013</span>
+        <p><strong>Eastern Kentucky University</strong> (AACSB Accredited)</p>
+        <ul>
+          <li>Human Resource Management</li>
+          <li>Operations Management</li>
+          <li>Business Communications</li>
+          <li>Marketing</li>
+          <li>Entrepreneurship</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="section-header"><h2>Skills</h2></div>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Core Competencies</h3>
+          <ul class="skill-list">
+            <li class="skill-item">Critical thinking & problem solving</li>
+            <li class="skill-item">Adaptability</li>
+            <li class="skill-item">Communication</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Business & Marketing</h3>
+          <ul class="skill-list">
+            <li class="skill-item">Business Plan Writing</li>
+            <li class="skill-item">Logo & Brand Design</li>
+            <li class="skill-item">Marketing Campaigns</li>
+            <li class="skill-item">Website Design</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Technology</h3>
+          <ul class="skill-list">
+            <li class="skill-item">PC repair & troubleshooting</li>
+            <li class="skill-item">Windows OS installation</li>
+            <li class="skill-item">AI: ChatGPT prompt engineering</li>
+            <li class="skill-item">Microsoft 365 & cloud tools</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section">
+      <div class="section-header"><h2>Portfolio & Work Samples</h2></div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <h3>Business Solutions Services</h3>
+          <p>I specialize in bringing business ideas to life with precision and creativity.</p>
+        </div>
+        <div class="portfolio-item">
+          <h3>Promo Video & Logo</h3>
+          <p>Check out a promotional video and logo I created for White Enterprises LLC.</p>
+        </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="section-header"><h2>Contact</h2></div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <p>(859) 396-xxxx</p> </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <p><a href="mailto:randy_johnson138@mymail.eku.edu">randy_johnson138@mymail.eku.edu</a></p>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+          <p><a href="https://www.linkedin.com/in/randy-johnson-1725a869" target="_blank">linkedin.com/in/randy-johnson-1725a869</a></p>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <p>Lexington, KY 40508</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Thank you for visiting my professional portfolio</p>
+      <div class="footer-links">
+        <a href="#home" class="footer-link" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
+        <a href="https://www.linkedin.com/in/randy-johnson-1725a869" target="_blank" class="footer-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:randy_johnson138@mymail.eku.edu" class="footer-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p class="copyright">&copy; ${new Date().getFullYear()} Randy Johnson. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // highlight nav on scroll
+    const sections = document.querySelectorAll('main section[id]'); 
+    const navLinks = document.querySelectorAll('.navbar .nav-link'); 
+
+    if (sections.length > 0 && navLinks.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              navLinks.forEach(l => l.classList.remove('active'));
+              const activeLink = document.querySelector('.navbar .nav-link[href="#' + e.target.id + '"]');
+              if (activeLink) activeLink.classList.add('active');
+            }
+          });
+        }, { threshold: 0.6 });
+        sections.forEach(s => observer.observe(s));
+    }
+
+    // smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = a.getAttribute('href');
+        try {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior:'smooth' });
+            }
+        } catch (error) {
+            console.warn('Smooth scroll target not found or invalid selector:', targetId, error);
+        }
+      });
+    });
+  <\/script>
+</body>
+</html>`;
+
+        // --- Content for Bistro Site Modal (UPDATED) ---
+        const bistroHtmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bluegrass Bistro - A Lexington Culinary Experience</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #1a1a1a; color: #f1f1f1; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        .menu-filter-btn { transition: all 0.3s ease; }
+        .menu-filter-btn.active {
+            background-color: #c09a69; color: #1a1a1a; box-shadow: 0 4px 15px rgba(192, 154, 105, 0.3);
+        }
+        .menu-card {
+            background-color: #242424; border-radius: 0.5rem; overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #333; cursor: pointer;
+        }
+        .menu-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .menu-card img { transition: transform 0.4s ease; }
+        .menu-card:hover img { transform: scale(1.1); }
+
+        .btn-primary {
+            background-color: #c09a69; color: #1a1a1a; font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem;
+            box-shadow: 0 5px 15px rgba(192, 154, 105, 0.2); transition: all 0.3s ease;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-primary:hover {
+            background-color: #ad8a5e; transform: translateY(-4px) scale(1.03); box-shadow: 0 10px 25px rgba(192, 154, 105, 0.4);
+        }
+
+        /* Order Summary Styles */
+        #order-summary-section {
+            position: fixed; bottom: 0; left: 0; width: 100%; background-color: #242424; color: #f1f1f1;
+            padding: 1rem 1.5rem 1.5rem; box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.7); z-index: 50;
+            transition: transform 0.3s ease-in-out; transform: translateY(100%);
+        }
+        #order-summary-section.active { transform: translateY(0); }
+        #order-summary-content { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; }
+        .order-item {
+            display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.5rem; border-bottom: 1px solid #333;
+        }
+        .remove-item-btn {
+            background: none; border: none; color: #e57373; cursor: pointer; font-size: 1.2rem; line-height: 1; padding: 0;
+        }
+        .order-total-grid {
+            display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1rem;
+            margin: 1rem 0; border-top: 1px solid #444; padding-top: 1rem;
+        }
+        .order-total-grid .font-bold { font-weight: 700; color: white; }
+        
+        /* NEW "Coming Soon" Modal Styles */
+        .coming-soon-modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 10, 20, 0.9);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .coming-soon-modal-overlay.active { opacity: 1; visibility: visible; }
+        .coming-soon-modal-content {
+            background: #1e293b; color: white; text-align: center;
+            padding: 2.5rem; border-radius: 1rem;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .coming-soon-modal-overlay.active .coming-soon-modal-content {
+             transform: scale(1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="w-full">
+        <section class="hero h-screen flex flex-col justify-center items-center text-center p-4">
+            <h1 class="text-6xl md:text-8xl font-bold text-white tracking-wider leading-tight">The Bluegrass Bistro</h1>
+            <p class="text-xl md:text-2xl mt-4 text-gray-300 max-w-2xl">A modern taste of Lexington's finest traditions. Experience culinary excellence.</p>
+            <a href="#menu" class="mt-8 px-8 py-3 bg-transparent border-2 border-[#c09a69] text-[#c09a69] font-bold rounded-full hover:bg-[#c09a69] hover:text-[#1a1a1a] transition-all duration-300">View The Menu</a>
+        </section>
+
+        <section id="menu" class="py-20 px-4 bg-[#111]">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-5xl font-bold text-white">Our Menu</h2>
+                    <p class="text-lg text-gray-400 mt-2">Crafted with passion from locally sourced ingredients.</p>
+                </div>
+                <div id="menu-filters" class="flex justify-center flex-wrap gap-4 mb-12">
+                    <button class="menu-filter-btn active px-6 py-2 rounded-full font-semibold border-2 border-[#c09a69] text-white" data-category="All"><i class="fas fa-utensils mr-2"></i>All</button>
+                    <button class="menu-filter-btn px-6 py-2 rounded-full font-semibold border-2 border-[#c09a69] text-white" data-category="Appetizers"><i class="fas fa-star mr-2"></i>Appetizers</button>
+                    <button class="menu-filter-btn px-6 py-2 rounded-full font-semibold border-2 border-[#c09a69] text-white" data-category="Entrees"><i class="fas fa-drumstick-bite mr-2"></i>Entrees</button>
+                    <button class="menu-filter-btn px-6 py-2 rounded-full font-semibold border-2 border-[#c09a69] text-white" data-category="Desserts"><i class="fas fa-ice-cream mr-2"></i>Desserts</button>
+                </div>
+                <div id="menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Menu items will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <div id="order-summary-section">
+            <div id="order-summary-content">
+                <h3 class="text-2xl font-bold text-white text-center">Your Order</h3>
+                <div id="order-items-container"></div>
+                <div class="order-total-grid">
+                    <span>Subtotal:</span>
+                    <span id="subtotal-price" class="text-right">$0.00</span>
+                    <span>Tax (6%):</span>
+                    <span id="tax-price" class="text-right">$0.00</span>
+                    <span class="font-bold">Total:</span>
+                    <span id="total-price" class="font-bold text-right">$0.00</span>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <button id="checkout-button" class="btn-primary w-full max-w-sm">
+                        <i class="fas fa-shield-alt mr-2"></i>Proceed to Secure Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bg-black py-8 text-center text-gray-500">
+            <p>&copy; 2025 The Bluegrass Bistro (A JWS Demo) | Lexington, KY</p>
+            <p class="text-sm mt-2">This is a fictional website created by Johnson Website Solutions for demonstration purposes.</p>
+        </footer>
+    </div>
+    
+    <div id="coming-soon-modal" class="coming-soon-modal-overlay">
+        <div class="coming-soon-modal-content">
+            <h2 class="text-2xl font-bold font-serif mb-2">More Ways to Pay</h2>
+            <p class="text-slate-300">Apple Pay & Google Pay: Coming Soon!</p>
+        </div>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuData = [
+            { id: 1, name: 'Bourbon Glazed Salmon', category: 'Entrees', price: 26.00, description: 'Fresh Atlantic salmon, sweet bourbon glaze, roasted asparagus.', image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60' },
+            { id: 2, name: 'Kentucky Hot Brown Sliders', category: 'Appetizers', price: 14.00, description: 'Toasted brioche, roasted turkey, mornay sauce, and bacon.', image: 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60' },
+            { id: 5, name: 'Bourbon Bread Pudding', category: 'Desserts', price: 9.00, description: 'Warm, decadent pudding with a rich caramel bourbon sauce.', image: 'https://images.unsplash.com/photo-1542326521-969993293148?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60' },
+        ];
+
+        const menuGrid = document.getElementById('menu-grid');
+        const filterBtns = document.querySelectorAll('.menu-filter-btn');
+        const orderSummarySection = document.getElementById('order-summary-section');
+        const orderItemsContainer = document.getElementById('order-items-container');
+        const subtotalEl = document.getElementById('subtotal-price');
+        const taxEl = document.getElementById('tax-price');
+        const totalEl = document.getElementById('total-price');
+        const checkoutButton = document.getElementById('checkout-button');
+        const comingSoonModal = document.getElementById('coming-soon-modal');
+        
+        let currentOrder = [];
+
+        function renderMenu(filter = 'All') {
+            if (!menuGrid) return;
+            menuGrid.innerHTML = '';
+            const filteredData = filter === 'All' ? menuData : menuData.filter(item => item.category === filter);
+
+            filteredData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.dataset.itemId = item.id;
+                card.innerHTML = \`<div class="overflow-hidden h-56"><img src="\${item.image}" alt="\${item.name}" class="w-full h-full object-cover"></div><div class="p-6"><div class="flex justify-between items-start"><h3 class="text-2xl font-bold text-white">\${item.name}</h3><p class="text-2xl font-bold text-[#c09a69] ml-4">$ \${item.price.toFixed(2)}</p></div><p class="text-gray-400 mt-2">\${item.description}</p><button class="add-to-order-btn mt-4 btn-primary w-full text-sm"><i class="fas fa-plus mr-2"></i> Add to Order</button></div>\`;
+                card.querySelector('.add-to-order-btn').addEventListener('click', (e) => { e.stopPropagation(); addToOrder(item.id); });
+                menuGrid.appendChild(card);
+            });
+        }
+
+        function addToOrder(itemId) {
+            const itemToAdd = menuData.find(item => item.id === itemId);
+            if(itemToAdd) { currentOrder.push(itemToAdd); updateOrderSummary(); }
+        }
+
+        function removeFromOrder(index) {
+            currentOrder.splice(index, 1);
+            updateOrderSummary();
+        }
+
+        function updateOrderSummary() {
+            if (!orderSummarySection) return;
+            orderSummarySection.classList.toggle('active', currentOrder.length > 0);
+            
+            orderItemsContainer.innerHTML = '';
+            let subtotal = 0;
+            currentOrder.forEach((item, index) => {
+                subtotal += item.price;
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item text-sm';
+                orderItem.innerHTML = \`<span>\${item.name}</span><div class="flex items-center gap-4"><span>$\${item.price.toFixed(2)}</span><button class="remove-item-btn" data-index="\${index}">&times;</button></div>\`;
+                orderItemsContainer.appendChild(orderItem);
+            });
+            
+            document.querySelectorAll('.remove-item-btn').forEach(btn => btn.addEventListener('click', (e) => removeFromOrder(parseInt(e.target.dataset.index))));
+
+            const tax = subtotal * 0.06;
+            const total = subtotal + tax;
+            if(subtotalEl) subtotalEl.textContent = \`$\${subtotal.toFixed(2)}\`;
+            if(taxEl) taxEl.textContent = \`$\${tax.toFixed(2)}\`;
+            if(totalEl) totalEl.textContent = \`$\${total.toFixed(2)}\`;
+        }
+        
+        filterBtns.forEach(btn => btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderMenu(btn.dataset.category);
+        }));
+        
+        if(checkoutButton && comingSoonModal){
+            const openModal = () => comingSoonModal.classList.add('active');
+            const closeModal = () => comingSoonModal.classList.remove('active');
+            checkoutButton.addEventListener('click', openModal);
+            comingSoonModal.addEventListener('click', (e) => { if(e.target === comingSoonModal) closeModal(); });
+        }
+
+        renderMenu();
+        updateOrderSummary();
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                try {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) { targetElement.scrollIntoView({ behavior: 'smooth' }); }
+                } catch (err) { console.error("Smooth scroll failed:", err); }
+            });
+        });
+    });
+    <\/script>
+</body>
+</html>`;
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIconOpen = document.getElementById('menuIconOpen');
+            const menuIconClose = document.getElementById('menuIconClose');
+            const header = document.getElementById('header');
+            
+            if (mobileMenuButton && mobileMenu && menuIconOpen && menuIconClose) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        setTimeout(() => {
+                            mobileMenu.classList.remove('opacity-0', '-translate-y-2');
+                            mobileMenu.classList.add('opacity-100', 'translate-y-0');
+                        }, 10);
+                    } else {
+                        mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+                        mobileMenu.classList.add('opacity-0', '-translate-y-2');
+                        setTimeout(() => { mobileMenu.classList.add('hidden'); }, 300);
+                    }
+                    menuIconOpen.classList.toggle('hidden');
+                    menuIconClose.classList.toggle('hidden');
+                });
+            }
+
+            function closeMobileMenu() {
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) { 
+                    mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+                    mobileMenu.classList.add('opacity-0', '-translate-y-2');
+                     setTimeout(() => { mobileMenu.classList.add('hidden'); }, 300);
+                    if (menuIconOpen && menuIconClose) { 
+                        menuIconOpen.classList.remove('hidden');
+                        menuIconClose.classList.add('hidden');
+                    }
+                }
+            }
+            
+            document.querySelectorAll('#mobileMenu a, #header nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) { closeMobileMenu(); }
+                });
+            });
+            
+            document.addEventListener('click', (event) => {
+                if (header && !header.contains(event.target) && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    closeMobileMenu();
+                }
+            });
+            
+            const currentYearEl = document.getElementById('currentYear');
+            if (currentYearEl) { currentYearEl.textContent = new Date().getFullYear(); }
+
+            const chartHoverDetail = document.getElementById('chartHoverDetail');
+            const setupValueChartCanvas = document.getElementById('setupValueChart');
+            if (setupValueChartCanvas) {
+                const chartData = {
+                    labels: ['Custom Design', 'Domain (1st Year)', 'Site Launch & Setup'],
+                    datasets: [{
+                        label: '$199 Setup Includes', data: [100, 50, 49],
+                        backgroundColor: ['#0ea5e9', '#f59e0b', '#10b981'],
+                        borderColor: ['#ffffff', '#ffffff', '#ffffff'], borderWidth: 2, hoverOffset: 10,
+                        hoverBorderColor: ['#0284c7', '#d97706', '#059669'], hoverBorderWidth: 3,
+                    }]
+                };
+
+                try { 
+                    new Chart(setupValueChartCanvas, {
+                        type: 'doughnut', data: chartData,
+                        options: {
+                            responsive: true, maintainAspectRatio: false, cutout: '65%',
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: {
+                                    enabled: true, backgroundColor: '#1e293b', titleFont: { size: 14, weight: 'bold' },
+                                    bodyFont: { size: 12 }, padding: 10, cornerRadius: 4, displayColors: false,
+                                    callbacks: { label: (c) => `${c.label}: ~$${c.parsed} value` }
+                                }
+                            },
+                            onHover: (event, chartElement) => {
+                                if (chartHoverDetail) {
+                                    if (chartElement.length) {
+                                        const index = chartElement[0].index;
+                                        chartHoverDetail.textContent = `${chartData.labels[index]}: ~$${chartData.datasets[0].data[index]} value`;
+                                    } else {
+                                        chartHoverDetail.innerHTML = 'Hover over chart segments for details.';
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    if (chartHoverDetail) chartHoverDetail.innerHTML = 'Hover over chart segments for details.';
+                } catch (e) {
+                    console.error("Error creating chart:", e);
+                    if (chartHoverDetail) chartHoverDetail.innerHTML = 'Chart could not be loaded.';
+                }
+            }
+            
+            const mainNavLinks = document.querySelectorAll('#header nav a'); 
+            const mainSections = document.querySelectorAll('main section[id], footer'); 
+            
+            function updateActiveNavLink() {
+                let currentSectionId = '';
+                if (header && mainSections.length > 0) { 
+                    mainSections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        if (window.scrollY >= sectionTop - header.offsetHeight - 100) { 
+                            currentSectionId = section.getAttribute('id');
+                        }
+                    });
+                }
+
+                if (mainNavLinks.length > 0) { 
+                    mainNavLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentSectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+                const mobileNavLinks = document.querySelectorAll('#mobileMenu a'); 
+                 if (mobileNavLinks.length > 0) { 
+                     mobileNavLinks.forEach(link => {
+                         link.classList.remove('bg-sky-100', 'text-sky-700');
+                         if (link.getAttribute('href') === `#${currentSectionId}`) {
+                             link.classList.add('bg-sky-100', 'text-sky-700');
+                         }
+                     });
+                 }
+            }
+            window.addEventListener('scroll', updateActiveNavLink);
+            updateActiveNavLink(); 
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            if (animatedElements.length > 0) { 
+                try {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('is-visible');
+                                const delay = parseInt(entry.target.dataset.delay) || 0;
+                                entry.target.style.transitionDelay = `${delay}ms`;
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    animatedElements.forEach(el => observer.observe(el));
+                } catch(e) { console.error("Error with IntersectionObserver for animations:", e); }
+            }
+
+            function setupModal(cardId, modalId, iframeId, iframeContent, modalTitle) {
+                const card = document.getElementById(cardId);
+                const modal = document.getElementById(modalId);
+                if (!card || !modal) {
+                     console.warn("Modal setup skipped for:", cardId); return;
+                }
+                const iframe = document.getElementById(iframeId);
+                const closeButton = modal.querySelector('.modal-close-btn'); 
+                const titleElement = modal.querySelector('.modal-title');
+
+                if (iframe && closeButton && titleElement) {
+                    titleElement.textContent = modalTitle; 
+                    const openModal = () => {
+                        iframe.srcdoc = iframeContent; 
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden'; 
+                    };
+                    const closeModal = () => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = ''; 
+                        iframe.srcdoc = ''; 
+                    };
+                    card.addEventListener('click', openModal);
+                    closeButton.addEventListener('click', closeModal);
+                    modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(); } });
+                    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) { closeModal(); } });
+                } else { console.warn("Modal setup failed for:", cardId); }
+            }
+
+            setupModal('resumePortfolioCard', 'resumeModal', 'resumeIframe', resumeHtmlContent, "Randy Johnson - Professional Portfolio");
+            setupModal('bistroCard', 'bistroModal', 'bistroIframe', bistroHtmlContent, "Demo: The Bluegrass Bistro");
+            
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    const answer = item.querySelector('.faq-answer');
+                    item.classList.toggle('active');
+                    answer.style.display = item.classList.contains('active') ? 'block' : 'none';
+                    question.querySelector('.toggle-icon').textContent = item.classList.contains('active') ? '−' : '+';
+                });
+                question.parentElement.querySelector('.faq-answer').style.display = 'none';
+            });
+
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            let currentSlide = 0;
+            let slideInterval;
+            function showSlide(n) {
+                slides.forEach(s => s.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+                currentSlide = (n + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            function startSlider() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(() => { showSlide(currentSlide + 1); }, 7000);
+            }
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    showSlide(parseInt(dot.dataset.slide));
+                    startSlider();
+                });
+            });
+            if (slides.length > 0) { startSlider(); }
+
+            // NEW: Support Modal Logic
+            const supportButton = document.getElementById('support-button');
+            const supportModal = document.getElementById('support-modal');
+            const closeSupportModalButton = document.getElementById('close-support-modal');
+            if(supportButton && supportModal && closeSupportModalButton) {
+                const openSupportModal = () => {
+                    supportModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                };
+                const closeSupportModal = () => {
+                    supportModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                };
+                supportButton.addEventListener('click', openSupportModal);
+                closeSupportModalButton.addEventListener('click', closeSupportModal);
+                supportModal.addEventListener('click', (e) => { if(e.target === supportModal) closeSupportModal(); });
+                 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && supportModal.classList.contains('active')) { closeSupportModal(); } });
+            }
+
+        });
+    </script>
+</body>
+</html>
