@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DetailHero - Professional Car Detailing</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <style>
+    /* Use Inter font family */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc; /* A very light gray background */
+    }
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Simple animation for section headers */
+    .section-header {
+        animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- Header & Navigation -->
+  <header class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-gray-900">Detail<span class="text-blue-600">Hero</span></a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="#booking" class="text-gray-600 hover:text-blue-600 transition-colors">Services</a>
+        <a href="#gallery" class="text-gray-600 hover:text-blue-600 transition-colors">Gallery</a>
+        <a href="#booking" class="text-gray-600 hover:text-blue-600 transition-colors">Book Now</a>
+      </nav>
+      <a href="#booking" class="hidden md:inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-transform transform hover:scale-105">
+        Get a Quote
+      </a>
+      
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-900 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <nav class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
+        <a href="#booking" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-blue-600">Services</a>
+        <a href="#gallery" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-blue-600">Gallery</a>
+        <a href="#booking" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-blue-600">Book Now</a>
+        <a href="#booking" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700">Get a Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero relative flex flex-col justify-center items-center text-white min-h-[60vh] md:min-h-[70vh]" style="background-image: linear-gradient(rgba(29, 39, 59, 0.6), rgba(29, 39, 59, 0.6)), url('assets/DETAULERO.PNG'); background-size: cover; background-position: center;">
+    <div class="container mx-auto px-6 text-center z-10">
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 animate-fadeIn">Welcome to DetailHero</h1>
+      <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8 animate-fadeIn" style="animation-delay: 0.2s;">
+        Your car’s best friend—spotless, shiny, and protected. We bring the showroom finish back to your vehicle.
+      </p>
+      <a href="#booking" class="bg-blue-600 text-white font-bold px-8 py-4 rounded-lg hover:bg-blue-700 transition-transform transform hover:scale-105 inline-block animate-fadeIn" style="animation-delay: 0.4s;">
+        Book Your Detail Session
+      </a>
+    </div>
+  </section>
+
+  <!-- Booking & Checkout Section -->
+  <section id="booking" class="py-20">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12 section-header">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Choose Your Service & Book Now</h2>
+        <p class="text-gray-600 mt-2">Select your desired detailing package below.</p>
+      </div>
+      <div class="max-w-2xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-lg">
+        <!-- Consultation Notice -->
+        <div class="mb-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 rounded-r-lg" role="alert">
+            <div class="flex">
+                <div class="py-1">
+                    <svg class="h-6 w-6 text-yellow-500 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <div>
+                    <p class="font-bold">Important: Please Verify First!</p>
+                    <p class="text-sm">To confirm your address and our availability, please contact us before paying:</p>
+                    <p class="text-sm mt-2"><strong>Call or Text:</strong> (859) 396-Your number here</p>
+                    <p class="text-sm"><strong>Email:</strong> jws@johnosnwebsite.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Options -->
+        <div class="space-y-4">
+          <!-- Option 1: Interior Revival -->
+          <label for="interior" class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500">
+            <input type="checkbox" id="interior" name="service" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+            <span class="ml-4 flex-grow text-lg font-medium text-gray-800">Interior Revival</span>
+            <span class="text-lg font-bold text-gray-900">$150</span>
+          </label>
+          <!-- Option 2: Exterior Shine -->
+          <label for="exterior" class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500">
+            <input type="checkbox" id="exterior" name="service" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+            <span class="ml-4 flex-grow text-lg font-medium text-gray-800">Exterior Shine</span>
+            <span class="text-lg font-bold text-gray-900">$150</span>
+          </label>
+        </div>
+        <!-- Discount Message -->
+        <div id="discount-message" class="text-center text-green-600 font-semibold mt-6 hidden">
+          <!-- JS will populate this -->
+        </div>
+        <!-- Total -->
+        <div class="mt-8 pt-6 border-t flex justify-between items-center">
+          <span class="text-2xl font-bold text-gray-900">Total:</span>
+          <span id="total-price" class="text-3xl font-extrabold text-blue-600">$0</span>
+        </div>
+        <!-- Payment Buttons -->
+        <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+          <!-- Cash App Button -->
+          <a id="proceed-button" href="https://cash.app/$Johnsonwebsite" target="_blank" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-green-500 text-white font-bold px-8 py-4 rounded-lg hover:bg-green-600 transition-all transform hover:scale-105 opacity-50 cursor-not-allowed">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            Proceed with Chosen Clean
+          </a>
+          <!-- Other POS Button -->
+          <button disabled class="w-full sm:w-auto flex items-center justify-center gap-3 bg-gray-400 text-white font-bold px-8 py-4 rounded-lg cursor-not-allowed opacity-70">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+            Other POS (Coming Soon)
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Gallery Section -->
+  <section id="gallery" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+          <div class="text-center mb-12 section-header">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Our Work</h2>
+              <p class="text-gray-600 mt-2">See the DetailHero difference.</p>
+          </div>
+          <!-- Gallery content can be added here in the future -->
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2024 DetailHero. All Rights Reserved.</p>
+      <p class="text-sm text-gray-400 mt-2">Built with passion for pristine cars.</p>
+    </div>
+  </footer>
+  
+  <script>
+    // Wait for the DOM to be fully loaded before running scripts
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- Mobile Menu Logic ---
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close mobile menu when a link is clicked
+      const navLinks = mobileMenu.querySelectorAll('a');
+      navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+              mobileMenu.classList.add('hidden');
+          });
+      });
+
+      // --- Checkout Logic ---
+      // Price Configuration
+      const prices = {
+          interior: 150,
+          exterior: 150,
+          fullDetail: 250, // Discounted price for both
+          discountAmount: 50
+      };
+
+      // Element Selection
+      const interiorCheckbox = document.getElementById('interior');
+      const exteriorCheckbox = document.getElementById('exterior');
+      const totalPriceElement = document.getElementById('total-price');
+      const proceedButton = document.getElementById('proceed-button');
+      const discountMessage = document.getElementById('discount-message');
+
+      // Calculation Function
+      function calculateTotal() {
+          const isInterior = interiorCheckbox.checked;
+          const isExterior = exteriorCheckbox.checked;
+          let total = 0;
+
+          if (isInterior && isExterior) {
+              total = prices.fullDetail;
+              discountMessage.textContent = `You've selected the Heroic Full Detail! A $${prices.discountAmount} discount has been applied.`;
+              discountMessage.classList.remove('hidden');
+          } else {
+              discountMessage.classList.add('hidden');
+              if (isInterior) {
+                  total += prices.interior;
+              }
+              if (isExterior) {
+                  total += prices.exterior;
+              }
+          }
+
+          // Update total price display
+          totalPriceElement.textContent = `$${total}`;
+
+          // Enable/disable payment button
+          if (total > 0) {
+              proceedButton.classList.remove('opacity-50', 'cursor-not-allowed');
+          } else {
+              proceedButton.classList.add('opacity-50', 'cursor-not-allowed');
+          }
+      }
+      
+      // Event Listeners for checkboxes
+      interiorCheckbox.addEventListener('change', calculateTotal);
+      exteriorCheckbox.addEventListener('change', calculateTotal);
+
+      // Prevent click on disabled payment button
+      proceedButton.addEventListener('click', (event) => {
+          if (proceedButton.classList.contains('cursor-not-allowed')) {
+              event.preventDefault();
+          }
+      });
+
+      // Initial Calculation on page load
+      calculateTotal();
+    });
+  </script>
+
+</body>
+</html>
